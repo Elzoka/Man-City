@@ -17,15 +17,15 @@ const FormField = ({id, formdata, change}) => {
                         
                         />
 
-                        {
-                            formdata.validation && !formdata.valid
-                            ?
-                                <div className="error_label" style={{height:'19px'}}>
-                                    {formdata.validationMessage}
-                                </div>
-                            :
+                        <div className="error_label">
+                            {
+                                formdata.validation && !formdata.valid
+                                ?
+                                formdata.validationMessage
+                                :
                                 null
-                        }
+                            }
+                        </div>
                         
                     </div>
                 )
