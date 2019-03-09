@@ -3,7 +3,7 @@ import AdminLayout from '../../../HOC/AdminLayout';
 
 import FormField from '../../UI/formFields';
 import {validate, firebaseLooper} from '../../UI/misc';
-import {Teams, firebaseDB} from '../../../firebase';
+import {Matches, Teams, firebaseDB} from '../../../firebase';
 
 class AddEditMatch extends Component {
     state = {
@@ -200,11 +200,20 @@ class AddEditMatch extends Component {
                     .catch(e => {
                         this.setState({
                             formError: true
-                        })
+                        });
                     })
-
             }else{
                 // add Match
+                Matches.push(dataToSubmit)
+                    .then(() => {
+                        this.props.history.push('/admin_matches');
+                    })
+                    .catch(e => {
+                        console.log(e);
+                        this.setState({
+                            formError: true
+                        });
+                    })
             }
         }else{
             this.setState({
@@ -275,6 +284,7 @@ class AddEditMatch extends Component {
         const matchId = this.props.match.params.id;
         if(!matchId){
             // Add Match
+            getTeams(null, 'Add Match');
         }else{
             firebaseDB.ref(`matches/${matchId}`).once('value')
                 .then(snapshot => {
