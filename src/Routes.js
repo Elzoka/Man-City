@@ -8,6 +8,7 @@ import Layout from './HOC/Layout';
 import SignIn from './Components/SignIn';
 import TheTeam from './Components/theTeam';
 import TheMatches from './Components/theMatches';
+import NotFound from './Components/UI/not_found';
 
 import Dashboard from './Components/admin/Dashboard';
 import AdminMatches from './Components/admin/matches';
@@ -31,6 +32,7 @@ const Routes = props => {
 				<PublicRoutes {...props} exact component={TheMatches} path="/the_matches"/>
 				<PublicRoutes {...props} exact component={Home} path="/"/>
 				<PublicRoutes {...props} restricted exact component={SignIn} path="/sign_in"  />
+				<PublicRoutes {...props} restricted component={NotFound} path="*"  />
 			</Switch>
     	</Layout>
     );
