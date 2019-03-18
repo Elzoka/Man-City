@@ -6,7 +6,6 @@ import Stripes from '../../Resources/images/stripes.png';
 import {Players} from '../../firebase';
 import {firebaseLooper} from '../UI/misc';
 import PlayerUrl from '../../Resources/images/players/Otamendi.png';
-// import {Promise} from 'core-js'
 
 class TheTeam extends Component {
 
