@@ -3,7 +3,7 @@ import AdminLayout from '../../../HOC/AdminLayout';
 
 import FormField from '../../UI/formFields';
 import Fileuploader from '../../UI/fileuploader';
-import {validate, firebaseLooper} from '../../UI/misc';
+import {validate} from '../../UI/misc';
 import {Players, firebaseDB, firebase} from '../../../firebase';
 
 
@@ -124,7 +124,10 @@ class AddEditPlayers extends Component {
                         .child(playerData.image).getDownloadURL()
                         .then(url => {
                             this.updateFields(playerData, playerId, 'Edit player', url);
-                        });
+                        })
+                        .catch(e => {
+                            this.updateFields({...playerData, image: ''}, playerId, 'Edit player', '');
+                        })
                 });
         }
     }
